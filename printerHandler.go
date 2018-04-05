@@ -11,7 +11,7 @@ import (
 func logPrinter(log LogInstance) {
 	info := retrieveCallInfo()
 	timer := time.Now()
-	logPrint(log, info, timer)
+	logPrint(log, info,time.Date(timer.Year(), timer.Month(), timer.Day(), timer.Hour(), timer.Minute(), 0, 0, timer.Location()))
 }
 
 func logPrint(log LogInstance, info *callerInfo, time time.Time) {
