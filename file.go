@@ -27,7 +27,7 @@ func FilePrinter(log LogInstance, packageName string, fileName string, lineNumbe
 		fmt.Println(err)
 		os.Exit(1)
 	}
-	logString := fmt.Sprintf("[%s] [%s] [%s::%s::%s] [%d] %s\n", log.LogType, time.Format("2006-01-02 15:04:05"), packageName, fileName, funcName, lineNumber, log.Message)
+	logString := fmt.Sprintf("[%s] [%s] [%s::%s::%s] [%d] %s\n", log.LogType, time.Format("2006-01-02 15:04:05"), packageName, fileName, funcName, lineNumber, log.Body)
 	_, fileWriteErr := file.WriteString(logString)
 	if fileWriteErr != nil {
 		fmt.Println(fileWriteErr)
