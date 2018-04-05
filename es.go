@@ -12,7 +12,7 @@ func ESPrinter(log LogInstance, packageName string, fileName string, lineNumber 
 	url, index := getParseClientOption(log.LoggerInit.Location)
 	client := elastigo.NewConn()
 	client.SetFromUrl(url)
-	logJason := ElasticLog{packageName, fileName, funcName, lineNumber, log.LogType, log.Message, time}
+	logJason := ElasticLog{packageName, fileName, funcName, lineNumber, log.LogType, log.Body, time}
 	timeString := time.Format("2006-01-02")
 	_, indexErr := client.Index(index, timeString, "", nil, logJason)
 	if indexErr != nil {
@@ -40,6 +40,7 @@ type ElasticLog struct {
 	FunctionName string
 	LineNumber   int
 	LogType      string
-	Message      string
+	Body      interface{}
 	Time         time.Time
 }
+

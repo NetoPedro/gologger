@@ -7,6 +7,6 @@ type Logger struct {
 
 type LogInstance struct {
 	LogType    string
-	Message    string
+	Body    interface{}
 	LoggerInit Logger
 }
