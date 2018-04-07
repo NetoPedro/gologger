@@ -14,7 +14,7 @@ func ESPrinter(log LogInstance, packageName string, fileName string, lineNumber 
 	client.SetFromUrl(url)
 	logJason := ElasticLog{packageName, fileName, funcName, lineNumber, log.LogType, log.Body, time}
 	//Creating problems with the new update which allows only 1 type per index
-	_, indexErr := client.Index(index, "_model", "", nil, logJason)
+	_, indexErr := client.Index(index, "model", "", nil, logJason)
 	if indexErr != nil {
 		fmt.Println(indexErr)
 		os.Exit(1)
