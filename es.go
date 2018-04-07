@@ -13,8 +13,8 @@ func ESPrinter(log LogInstance, packageName string, fileName string, lineNumber 
 	client := elastigo.NewConn()
 	client.SetFromUrl(url)
 	logJason := ElasticLog{packageName, fileName, funcName, lineNumber, log.LogType, log.Body, time}
-	timeString := time.Format("2006-01-02")
-	_, indexErr := client.Index(index, timeString, "", nil, logJason)
+	//Creating problems with the new update which allows only 1 type per index
+	_, indexErr := client.Index(index, "_model", "", nil, logJason)
 	if indexErr != nil {
 		fmt.Println(indexErr)
 		os.Exit(1)
