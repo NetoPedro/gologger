@@ -3,6 +3,7 @@ package gologger
 type Logger struct {
 	PrinterType string
 	Location    string
+	MinLevel	int
 }
 
 type LogInstance struct {

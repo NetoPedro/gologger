@@ -1,5 +1,6 @@
 package gologger
 
+import "strconv"
 
 const (
 	CONSOLE       string = "console"
@@ -21,13 +22,14 @@ const FATAL = 5
 
 func GetLogger(selector ...string) GoLogger {
 	if len(selector) == 0 {
-		return GoLogger{Logger{CONSOLE, ColoredLog}}
+		return GoLogger{Logger{CONSOLE, ColoredLog,0}}
 	}
-	return GoLogger{Logger{selector[0], selector[1]}}
+	level, _ := strconv.Atoi(selector[2])
+	return GoLogger{Logger{selector[0], selector[1],level}}
 }
 
-func (log GoLogger) Log(message interface{}, minLevel int) {
-	if minLevel <= LOG {
+func (log GoLogger) Log(message interface{}) {
+	if log.MinLevel <= LOG {
 		logPrinter(LogInstance{LogType: "LOG", Body: message, LoggerInit: log.Logger})
 	}
 }
@@ -36,32 +38,32 @@ func (log GoLogger) Message(message interface{}) {
 	logPrinter(LogInstance{LogType: "MSG", Body: message, LoggerInit: log.Logger})
 }
 
-func (log GoLogger) Info(message interface{}, minLevel int) {
-	if minLevel <= INFO {
+func (log GoLogger) Info(message interface{}) {
+	if log.MinLevel <= INFO {
 		logPrinter(LogInstance{LogType: "INF", Body: message, LoggerInit: log.Logger})
 	}
 }
 
-func (log GoLogger) Warn(message interface{}, minLevel int) {
-	if minLevel <= WARN {
+func (log GoLogger) Warn(message interface{}) {
+	if log.MinLevel <= WARN {
 		logPrinter(LogInstance{LogType: "WRN", Body: message, LoggerInit: log.Logger})
 	}
 }
 
-func (log GoLogger) Debug(message interface{}, minLevel int) {
-	if minLevel <= DEBUG {
+func (log GoLogger) Debug(message interface{}) {
+	if log.MinLevel <= DEBUG {
 		logPrinter(LogInstance{LogType: "DBG", Body: message, LoggerInit: log.Logger})
 	}
 }
 
-func (log GoLogger) Error(message interface{}, minLevel int) {
-	if minLevel <= ERROR {
+func (log GoLogger) Error(message interface{}) {
+	if log.MinLevel <= ERROR {
 		logPrinter(LogInstance{LogType: "ERR", Body: message, LoggerInit: log.Logger})
 	}
 }
 
-func (log GoLogger) Fatal(message interface{}, minLevel int) {
-	if minLevel <= FATAL {
+func (log GoLogger) Fatal(message interface{}) {
+	if log.MinLevel <= FATAL {
 		logPrinter(LogInstance{LogType: "CRT", Body: message, LoggerInit: log.Logger})
 	}
 }
