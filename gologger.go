@@ -1,6 +1,5 @@
 package gologger
 
-import "strconv"
 
 const (
 	CONSOLE       string = "console"
