@@ -10,4 +10,4 @@ type LogInstance struct {
 	LogType    string
 	Body    interface{}
 	LoggerInit Logger
-}
+  }
