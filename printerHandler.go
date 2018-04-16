@@ -5,7 +5,6 @@ import (
 	"runtime"
 	"strings"
 	"time"
-	"os"
 )
 
 func logPrinter(log LogInstance) {
