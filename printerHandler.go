@@ -16,9 +16,6 @@ func logPrinter(log LogInstance) {
 
 func logPrint(log LogInstance, info *callerInfo, time time.Time) {
 	Print(log, info.packageName, info.fileName, info.line, info.funcName, time)
-	if log.LogType == "CRT" {
-		os.Exit(1)
-	}
 }
 
 type callerInfo struct {
