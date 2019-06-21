@@ -35,11 +35,16 @@ func (log GoLogger) Log(message interface{}) {
 }
 
 func (log GoLogger) Metrics(message interface{}){
-	logPrinter(LogInstance{LogType: "MTR", Body: message, LoggerInit: log.Logger})
+	if log.MinLevel < 10{
+		logPrinter(LogInstance{LogType: "MTR", Body: message, LoggerInit: log.Logger})
+	}
 }
 
 func (log GoLogger) Message(message interface{}) {
-	logPrinter(LogInstance{LogType: "MSG", Body: message, LoggerInit: log.Logger})
+	if log.MinLevel < 10{
+		logPrinter(LogInstance{LogType: "MSG", Body: message, LoggerInit: log.Logger})
+
+	}
 }
 
 func (log GoLogger) Info(message interface{}) {
